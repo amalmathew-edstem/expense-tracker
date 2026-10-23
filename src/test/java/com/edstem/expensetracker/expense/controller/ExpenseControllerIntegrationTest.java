@@ -143,6 +143,13 @@ class ExpenseControllerIntegrationTest {
     }
 
     @Test
+    void capsTheRequestedPageSizeAtOneHundred() throws Exception {
+        mockMvc.perform(get("/api/expenses").param("size", "500"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.page.size").value(100));
+    }
+
+    @Test
     void rejectsADateRangeThatEndsBeforeItStarts() throws Exception {
         mockMvc.perform(get("/api/expenses").param("from", "2026-03-31").param("to", "2026-03-01"))
                 .andExpect(status().isBadRequest());
