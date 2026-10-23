@@ -9,3 +9,6 @@ CLAUDE.md
 
 # IDE
 .idea/
+
+# Build output
+target/
